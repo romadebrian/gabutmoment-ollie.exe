@@ -2,13 +2,13 @@ VERSION 5.00
 Object = "{6BF52A50-394A-11D3-B153-00C04F79FAA6}#1.0#0"; "wmp.dll"
 Begin VB.Form Gabut 
    BorderStyle     =   0  'None
-   ClientHeight    =   5115
+   ClientHeight    =   9435
    ClientLeft      =   405
    ClientTop       =   1845
    ClientWidth     =   18480
    Icon            =   "Ollie.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5115
+   ScaleHeight     =   9435
    ScaleWidth      =   18480
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -25,9 +25,9 @@ Begin VB.Form Gabut
    End
    Begin VB.Image Image1 
       Height          =   4950
-      Left            =   240
+      Left            =   8160
       Picture         =   "Ollie.frx":0CCA
-      Top             =   120
+      Top             =   -120
       Width           =   2295
    End
    Begin WMPLibCtl.WindowsMediaPlayer WindowsMediaPlayer1 
@@ -35,6 +35,7 @@ Begin VB.Form Gabut
       Left            =   1080
       TabIndex        =   0
       Top             =   5640
+      Visible         =   0   'False
       Width           =   12015
       URL             =   ""
       rate            =   1
@@ -99,10 +100,11 @@ WindowsMediaPlayer1.settings.volume = 100
 WindowsMediaPlayer1.URL = (App.Path & "\" & "Ollie_Laughter.mp3")
 Image1.Picture = LoadPicture(App.Path & "\" & "ollie_kanan.gif")
 
-HP = 3
+HP = 1
 
 Image1.Height = 6135
 Image1.Left = 120
+Image1.Top = 1000
 
 End Sub
 
@@ -113,8 +115,50 @@ Unload Me
 End If
 End Sub
 
+Private Sub Image1_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim lokasi As Integer
+Randomize
+lokasi = Int((5 * Rnd) + 1)
+
+Select Case lokasi
+Case 1
+    Image1.Top = 1000
+    Image1.Left = 120
+    Timer1.Enabled = True
+    Timer2.Enabled = False
+    Image1.Picture = LoadPicture(App.Path & "\" & "ollie_kanan.gif")
+Case 2
+    Image1.Top = 4000
+    Image1.Left = 120
+    Timer1.Enabled = True
+    Timer2.Enabled = False
+    Image1.Picture = LoadPicture(App.Path & "\" & "ollie_kanan.gif")
+Case 3
+    Image1.Top = 1000
+    Image1.Left = 16200
+    Timer2.Enabled = True
+    Timer1.Enabled = False
+    Image1.Picture = LoadPicture(App.Path & "\" & "ollie_kiri.gif")
+Case 4
+    Image1.Top = 4000
+    Image1.Left = 16200
+    Timer2.Enabled = True
+    Timer1.Enabled = False
+    Image1.Picture = LoadPicture(App.Path & "\" & "ollie_kiri.gif")
+Case 5
+    Image1.Top = 1000
+    Image1.Left = 8840
+Case Else
+    Image1.Top = 4000
+    Image1.Left = 8840
+End Select
+
+
+
+End Sub
+
 Private Sub Timer1_Timer()
-Image1.Left = Image1.Left + 40
+Image1.Left = Image1.Left + 80
 If Image1.Left = 16200 Then
 Timer2.Enabled = True
 Timer1.Enabled = False
@@ -123,7 +167,7 @@ End If
 End Sub
 
 Private Sub Timer2_Timer()
-Image1.Left = Image1.Left - 40
+Image1.Left = Image1.Left - 80
 If Image1.Left = 120 Then
 Timer1.Enabled = True
 Timer2.Enabled = False
