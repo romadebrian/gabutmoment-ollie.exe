@@ -35,7 +35,6 @@ Begin VB.Form Gabut
       Left            =   1080
       TabIndex        =   0
       Top             =   5640
-      Visible         =   0   'False
       Width           =   12015
       URL             =   ""
       rate            =   1
@@ -98,9 +97,10 @@ End Sub
 Private Sub Form_Load()
 WindowsMediaPlayer1.settings.volume = 100
 WindowsMediaPlayer1.URL = (App.Path & "\" & "Ollie_Laughter.mp3")
+WindowsMediaPlayer1.settings.setMode "loop", True
 Image1.Picture = LoadPicture(App.Path & "\" & "ollie_kanan.gif")
 
-HP = 1
+HP = 3
 
 Image1.Height = 6135
 Image1.Left = 120
